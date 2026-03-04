@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import HiveMap from '../components/HiveMap';
 import { useToast } from '../components/Toast';
+import { useWebSocket } from '../hooks/useWebSocket';
 
 function HiveCard({ hive }) {
   const weightSensor = hive.sensors?.weight;
@@ -90,6 +91,7 @@ function Dashboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { showToast } = useToast();
+  const { isOpen, sendMessage, messages } = useWebSocket();
 
   const loadHives = async () => {
     setLoading(true);
@@ -115,6 +117,29 @@ function Dashboard() {
     <div className="min-h-screen flex flex-col bg-gradient-to-br from-bee-gray via-white to-bee-yellow/30">
       <Header />
       <main className="flex-1 max-w-6xl mx-auto px-4 py-8 w-full">
+        <div className="mb-4 bg-white rounded-2xl shadow p-4 flex flex-col gap-2">
+          <div className="flex justify-between items-center">
+            <span className="font-semibold text-bee-brown">Live-Verbindung (WebSocket)</span>
+            <span className={isOpen ? "text-green-600" : "text-red-600"}>
+              {isOpen ? "verbunden" : "nicht verbunden"}
+            </span>
+          </div>
+          <button
+            type="button"
+            onClick={() => sendMessage("Testnachricht vom Dashboard")}
+            className="self-start mt-1 px-3 py-1 text-sm bg-bee-yellow text-bee-brown font-semibold rounded-lg hover:bg-bee-green hover:text-white transition"
+          >
+            Testnachricht an Backend senden
+          </button>
+          {messages.length > 0 && (
+            <div className="mt-2 max-h-24 overflow-auto text-xs text-gray-600">
+              <div className="font-semibold mb-1">Empfangene Nachrichten:</div>
+              {messages.map((m, i) => (
+                <div key={i}>{m}</div>
+              ))}
+            </div>
+          )}
+        </div>
         <div className="mb-8 flex justify-between items-center flex-wrap gap-4">
           <h1 className="text-3xl font-bold text-bee-brown">Meine Bienenstände</h1>
           <div className="flex gap-2">
