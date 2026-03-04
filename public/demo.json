@@ -1,0 +1,172 @@
+{
+  "user": {
+    "id": "u_7f1e",
+    "email": "bee@monitor.app",
+    "name": "Alex",
+    "roles": ["owner"]
+  },
+  "devices": [
+    {
+      "id": "dev_bg95_001",
+      "model": "BeeMonitor v1",
+      "modem": "Quectel BG95-M3",
+      "firmware": "1.3.2",
+      "hiveId": "hive_a",
+      "status": "online",
+      "lastSeen": "2025-10-27T07:30:12Z",
+      "capabilities": ["weight", "temp_internal", "gps", "weather_station"]
+    },
+    {
+      "id": "dev_bg95_002",
+      "model": "BeeMonitor v1",
+      "modem": "Quectel BG95-M3",
+      "firmware": "1.3.2",
+      "hiveId": "hive_b",
+      "status": "offline",
+      "lastSeen": "2025-10-26T18:04:41Z",
+      "capabilities": ["weight", "temp_internal", "gps"]
+    }
+  ],
+  "hives": [
+    {
+      "id": "hive_a",
+      "name": "Standplatz Ost",
+      "hiveKey": "BM-A-9K3J-1Q2W",
+      "features": {
+        "plan": "standard",
+        "enabled": ["weight", "temp_internal", "gps_basic", "map_embed", "weather_station"]
+      },
+      "location": {
+        "current": {
+          "lat": 47.1797,
+          "lon": 15.4391,
+          "accuracy_m": 8.6,
+          "fix_time": "2025-10-27T07:29:58Z"
+        },
+        "history": [
+          {
+            "lat": 47.0705,
+            "lon": 15.4393,
+            "accuracy_m": 10.2,
+            "fix_time": "2025-10-27T06:29:57Z"
+          }
+        ]
+      },
+      "sensors": {
+        "weight": {
+          "unit": "kg",
+          "last": 36.42
+        },
+        "temp_internal": {
+          "unit": "°C",
+          "last": 34.1
+        },
+        "weather": {
+          "temp_external": { "unit": "°C", "last": 12.6 },
+          "humidity": { "unit": "%", "last": 78 },
+          "pressure": { "unit": "hPa", "last": 1008.5 },
+          "wind_speed": { "unit": "m/s", "last": 3.2 },
+          "wind_dir": { "unit": "°", "last": 210 },
+          "rain_1h": { "unit": "mm", "last": 0.0 },
+          "rain_24h": { "unit": "mm", "last": 2.1 }
+        }
+      },
+      "timeseries_preview": {
+        "weight": [
+          ["2025-10-27T04:00:00Z", 36.30],
+          ["2025-10-27T05:00:00Z", 36.33],
+          ["2025-10-27T06:00:00Z", 36.39],
+          ["2025-10-27T07:00:00Z", 36.42]
+        ],
+        "temp_internal": [
+          ["2025-10-27T04:00:00Z", 33.8],
+          ["2025-10-27T05:00:00Z", 33.9],
+          ["2025-10-27T06:00:00Z", 34.0],
+          ["2025-10-27T07:00:00Z", 34.1]
+        ],
+        "temp_external": [
+          ["2025-10-27T04:00:00Z", 9.2],
+          ["2025-10-27T05:00:00Z", 10.1],
+          ["2025-10-27T06:00:00Z", 11.3],
+          ["2025-10-27T07:00:00Z", 12.6]
+        ]
+      },
+      "alerts": {
+        "weight_drop_kg": 5,
+        "temp_internal_min": 30,
+        "temp_internal_max": 38,
+        "notify_channels": ["email"]
+      }
+    },
+    {
+      "id": "hive_b",
+      "name": "Waldkante Nord",
+      "hiveKey": "BM-B-4H8S-7Z9X",
+      "features": {
+        "plan": "standard",
+        "enabled": ["weight", "temp_internal", "gps_basic", "map_embed"]
+      },
+      "location": {
+        "current": {
+          "lat": 47.3883,
+          "lon": 15.0937,
+          "accuracy_m": 12.0,
+          "fix_time": "2025-10-26T16:12:02Z"
+        },
+        "history": []
+      },
+      "sensors": {
+        "weight": { "unit": "kg", "last": 28.05 },
+        "temp_internal": { "unit": "°C", "last": 33.4 }
+      },
+      "timeseries_preview": {
+        "weight": [
+          [
+            ["2025-10-26T13:00:00Z", 28.21],
+            ["2025-10-26T14:00:00Z", 29.85],
+            ["2025-10-26T15:00:00Z", 26.44],
+            ["2025-10-26T16:00:00Z", 31.92],
+            ["2025-10-26T17:00:00Z", 27.10],
+            ["2025-10-26T18:00:00Z", 33.48],
+            ["2025-10-26T19:00:00Z", 25.37],
+            ["2025-10-26T20:00:00Z", 30.66]
+          ]
+        ],
+        "temp_internal": [
+          ["2025-10-26T13:00:00Z", 33.8],
+          ["2025-10-26T14:00:00Z", 36.2],
+          ["2025-10-26T15:00:00Z", 31.1],
+          ["2025-10-26T16:00:00Z", 38.7],
+          ["2025-10-26T17:00:00Z", 32.4],
+          ["2025-10-26T18:00:00Z", 40.3]
+        ]
+      },
+      "alerts": {
+        "weight_drop_kg": 3,
+        "temp_internal_min": 29,
+        "temp_internal_max": 39,
+        "notify_channels": ["email"]
+      }
+    }
+  ],
+  "store": {
+    "addons": [
+      {
+        "id": "weather_station",
+        "name": "Wetterstation",
+        "description": "Externe Temperatur, Luftfeuchte, Luftdruck, Wind, Niederschlag",
+        "features": ["temp_external", "humidity", "pressure", "wind_speed", "wind_dir", "rain"],
+        "price_eur_month": 3.99,
+        "status": "available"
+      },
+      {
+        "id": "noise_level",
+        "name": "Geräuschmonitoring",
+        "description": "dB(A)-Messung im Stock",
+        "features": ["noise_level"],
+        "price_eur_month": 1.99,
+        "status": "coming_soon"
+      }
+    ]
+  }
+}
